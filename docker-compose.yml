@@ -1,0 +1,21 @@
+name: crudgo
+services:
+  goapp:
+    build: .
+    ports:
+      - "3000:3000"
+    links:
+      - godb
+  godb:
+    image: mysql:8.0.29
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: crudgo
+      MYSQL_ROOT_PASSWORD: miPasswordSecreta123
+    volumes:
+      - db-data:/var/lib/mysql
+
+
+volumes:
+  db-data:
